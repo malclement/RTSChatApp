@@ -16,6 +16,8 @@ public class UDPClient {
         InetAddress serverInetAddress = InetAddress.getByName(serverAddress);
         Console console = System.console();
 
+        System.out.println("Server address: " + serverAddress);
+
         if (console == null) {
             System.err.println("No console available");
             return;
@@ -29,6 +31,8 @@ public class UDPClient {
 
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, serverInetAddress, serverPort);
             socket.send(packet);
+
+            System.out.println("Message sent to server.");
         }
     }
 

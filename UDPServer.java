@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 
 public class UDPServer {
     private final int port;
@@ -14,14 +15,16 @@ public class UDPServer {
     }
 
     public void launch() throws IOException {
-        DatagramSocket socket = new DatagramSocket();
+        DatagramSocket socket = new DatagramSocket(this.port);
         byte[] buffer = new byte[BUFFER_SIZE];
+        System.out.println("UDP Server started on port " + socket.getLocalPort());
 
         while (true) {
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
             socket.receive(packet);
+            System.out.println("UDP" + packet.getData());
 
-            String receivedMessage = new String(packet.getData());
+            String receivedMessage = new String(packet.getData(), 0, packet.getLength(), StandardCharsets.UTF_8);
 
             InetAddress clientAddress = packet.getAddress();
             int clientPort = packet.getPort();
