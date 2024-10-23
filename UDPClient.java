@@ -27,6 +27,11 @@ public class UDPClient {
         while (true) {
             userInput = console.readLine();
 
+            if ("exit".equalsIgnoreCase(userInput)) {
+                System.out.println("Exiting client.");
+                break;
+            }
+
             byte[] buffer = userInput.getBytes(StandardCharsets.UTF_8);
 
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, serverInetAddress, serverPort);
