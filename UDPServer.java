@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.net.*;
 
 public class UDPServer {
-    private int port;
+    private final int port;
     private static final int BUFFER_SIZE = 1024;
     private static final int DEFAULT_PORT = 8000;
 

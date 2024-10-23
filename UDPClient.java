@@ -3,8 +3,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class UDPClient {
-    private String serverAddress;
-    private int serverPort;
+    private final String serverAddress;
+    private final int serverPort;
 
     public UDPClient(String serverAddress, int serverPort) {
         this.serverAddress = serverAddress;
