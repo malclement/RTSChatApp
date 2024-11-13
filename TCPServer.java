@@ -11,6 +11,7 @@ public class TCPServer {
     }
 
     private final int port;
+    private ServerSocket serverSocket;
 
     public TCPServer(int port) {
         if (port <= 0 || port > 65535) {
@@ -68,6 +69,14 @@ public class TCPServer {
         }
     }
 
+    public void stop() throws IOException {
+        if (serverSocket != null && !serverSocket.isClosed()) {
+            System.out.println("Stopping the server...");
+            serverSocket.close();
+            System.out.println("Server stopped.");
+        }
+    }
+
     @Override
     public String toString() {
         return "TCPServer listening on port " + port;
@@ -78,4 +87,5 @@ public class TCPServer {
         TCPServer server = new TCPServer(port);
         server.launch();
     }
+
 }

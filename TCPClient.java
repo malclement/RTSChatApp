@@ -3,14 +3,36 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
 public class TCPClient {
-    private String serverAddress;
-    private int serverPort;
+    public String getServerAddress() {
+        return serverAddress;
+    }
+
+    public int getServerPort() {
+        return serverPort;
+    }
+
+    private final String serverAddress;
+    private final int serverPort;
 
     public TCPClient(String serverAddress, int serverPort) {
+        if (serverAddress == null || serverAddress.trim().isEmpty()) {
+            throw new IllegalArgumentException("Server address cannot be null or empty.");
+        }
+        if (serverPort <= 0 || serverPort > 65535) {
+            throw new IllegalArgumentException("Port must be in the range 1 to 65535.");
+        }
+        try {
+            InetAddress.getByName(serverAddress);
+        } catch (UnknownHostException e) {
+            throw new IllegalArgumentException("Invalid server address: " + serverAddress, e);
+        }
+
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
     }
@@ -57,5 +79,20 @@ public class TCPClient {
 
         TCPClient client = new TCPClient(serverAddress, port);
         client.start();
+    }
+
+    public String sendAndReceiveMessage(String message) {
+        try (Socket socket = new Socket(serverAddress, serverPort);
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
+             PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true)) {
+
+            out.println(message);
+            String response = in.readLine();
+            return response != null ? toHex(response) : null;
+
+        } catch (IOException e) {
+            System.err.println("Error in client communication: " + e.getMessage());
+            return null;
+        }
     }
 }
