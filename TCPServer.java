@@ -6,9 +6,16 @@ import java.io.PrintWriter;
 import java.io.InputStreamReader;
 
 public class TCPServer {
-    private int port;
+    public int getPort() {
+        return port;
+    }
+
+    private final int port;
 
     public TCPServer(int port) {
+        if (port <= 0 || port > 65535) {
+            throw new IllegalArgumentException("Invalid port number: " + port);
+        }
         this.port = port;
     }
 
@@ -32,6 +39,7 @@ public class TCPServer {
 
         } catch (IOException e) {
             System.err.println("Error starting server: " + e.getMessage());
+            throw new RuntimeException("Server failed to start due to port conflict or other issue: " + e.getMessage());
         }
     }
 
