@@ -3,12 +3,40 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class UDPClient {
+    public String getServerAddress() {
+        return serverAddress;
+    }
+
+    public int getServerPort() {
+        return serverPort;
+    }
+
     private final String serverAddress;
     private final int serverPort;
 
     public UDPClient(String serverAddress, int serverPort) {
+        if (serverAddress == null || serverAddress.isEmpty()) {
+            throw new IllegalArgumentException("Server address cannot be null or empty.");
+        }
+        if (!isValidIPAddress(serverAddress)) {
+            throw new IllegalArgumentException("Invalid IP address format: " + serverAddress);
+        }
+        if (serverPort < 1 || serverPort > 65535) {
+            throw new IllegalArgumentException("Port number must be between 1 and 65535.");
+        }
+
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
+    }
+
+    // Helper method to validate IP address format
+    private boolean isValidIPAddress(String ip) {
+        try {
+            InetAddress.getByName(ip);
+            return true;
+        } catch (UnknownHostException e) {
+            return false;
+        }
     }
 
     public void launch() throws IOException {
