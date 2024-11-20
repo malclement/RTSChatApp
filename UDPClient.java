@@ -2,6 +2,14 @@ import java.net.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * The UDPClient class sends messages to a UDP server using DatagramPackets.
+ * It connects to a server specified by its IP address and port, sends the user input to the server,
+ * and exits when the user types "exit".
+ *
+ * The client reads input from the console, validates the server address and port, and sends the messages
+ * in UTF-8 encoding to the server.
+ */
 public class UDPClient {
     public String getServerAddress() {
         return serverAddress;
@@ -14,6 +22,13 @@ public class UDPClient {
     private final String serverAddress;
     private final int serverPort;
 
+    /**
+     * Constructor that initializes the UDPClient with the server address and port.
+     *
+     * @param serverAddress the IP address of the server to connect to
+     * @param serverPort the port number to connect to on the server
+     * @throws IllegalArgumentException if the server address is invalid or the port is out of the valid range
+     */
     public UDPClient(String serverAddress, int serverPort) {
         if (serverAddress == null || serverAddress.isEmpty()) {
             throw new IllegalArgumentException("Server address cannot be null or empty.");
@@ -29,7 +44,13 @@ public class UDPClient {
         this.serverPort = serverPort;
     }
 
-    // Helper method to validate IP address format
+    /**
+     * Helper method to validate the format of an IP address.
+     * This checks if the provided string is a valid IP address using InetAddress.
+     *
+     * @param ip the IP address to validate
+     * @return true if the IP address is valid, false otherwise
+     */
     private boolean isValidIPAddress(String ip) {
         try {
             InetAddress.getByName(ip);
@@ -39,6 +60,13 @@ public class UDPClient {
         }
     }
 
+    /**
+     * Launches the client, allowing the user to input messages to send to the server.
+     * The client sends messages as DatagramPackets over a DatagramSocket to the server.
+     * The loop continues until the user types "exit".
+     *
+     * @throws IOException if there is an error while sending the DatagramPacket
+     */
     public void launch() throws IOException {
         DatagramSocket socket = new DatagramSocket();
         InetAddress serverInetAddress = InetAddress.getByName(serverAddress);
@@ -69,6 +97,13 @@ public class UDPClient {
         }
     }
 
+    /**
+     * Main method to run the UDP client. This expects the server address and port as command-line arguments.
+     * If the arguments are invalid, it displays the usage and exits.
+     *
+     * @param args command-line arguments: server address and port number
+     * @throws IOException if there is an issue creating or sending the DatagramPacket
+     */
     public static void main(String[] args) throws IOException {
         if (args.length != 2) {
             System.out.println("Usage: java UDPClient <serverAddress> <serverPort>");

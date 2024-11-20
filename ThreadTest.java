@@ -1,3 +1,7 @@
+/**
+ * The ThreadTest class extends the {@link Thread} class and demonstrates how to create and run multiple threads in Java.
+ * Each thread in this class continuously prints the thread's name along with an incrementing counter every 100 milliseconds.
+ */
 public class ThreadTest extends Thread {
     public int getCounter() {
         return counter;
@@ -5,6 +9,11 @@ public class ThreadTest extends Thread {
 
     private int counter = 0;
 
+    /**
+     * The run method defines the code that will be executed by each thread.
+     * It continuously prints the thread's name and the current counter value, then increments the counter.
+     * The thread sleeps for 100 milliseconds after each print to simulate periodic work.
+     */
     @Override
     public void run() {
         try {
@@ -17,6 +26,11 @@ public class ThreadTest extends Thread {
         }
     }
 
+    /**
+     * The main method demonstrates how to create and start multiple threads using the ThreadTest class.
+     * It creates three instances of ThreadTest and starts each one.
+     * Each thread runs its own instance of the {@link #run()} method.
+     */
     public static void main(String[] args) {
         ThreadTest thread1 = new ThreadTest();
         ThreadTest thread2 = new ThreadTest();

@@ -8,6 +8,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * TCPClient is a class that implements a TCP client which can connect to a server,
+ * send messages, and receive responses. The messages are encoded in UTF-8, and
+ * the response from the server is displayed in hexadecimal format.
+ */
 public class TCPClient {
     public String getServerAddress() {
         return serverAddress;
@@ -20,6 +25,13 @@ public class TCPClient {
     private final String serverAddress;
     private final int serverPort;
 
+    /**
+     * Constructor to initialize the TCPClient with the server address and port.
+     *
+     * @param serverAddress The address of the server.
+     * @param serverPort The port number to connect to.
+     * @throws IllegalArgumentException if the server address is invalid or the port is out of range.
+     */
     public TCPClient(String serverAddress, int serverPort) {
         if (serverAddress == null || serverAddress.trim().isEmpty()) {
             throw new IllegalArgumentException("Server address cannot be null or empty.");
@@ -37,6 +49,11 @@ public class TCPClient {
         this.serverPort = serverPort;
     }
 
+    /**
+     * Starts the client, establishes a connection to the server, and allows the user
+     * to send messages to the server and receive a response. The response is printed
+     * in hexadecimal format.
+     */
     public void start() {
         try (Socket socket = new Socket(serverAddress, serverPort);
              BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
@@ -60,6 +77,12 @@ public class TCPClient {
         }
     }
 
+    /**
+     * Converts a given string into its hexadecimal representation.
+     *
+     * @param text The text string to be converted.
+     * @return A string representing the hexadecimal form of the input text.
+     */
     private String toHex(String text) {
         StringBuilder hexString = new StringBuilder();
         for (char c : text.toCharArray()) {
@@ -68,6 +91,13 @@ public class TCPClient {
         return hexString.toString();
     }
 
+    /**
+     * Main method to launch the TCPClient application. It expects the server address
+     * and port number as command line arguments.
+     *
+     * @param args The command line arguments. The first argument is the server address,
+     *             and the second is the port number.
+     */
     public static void main(String[] args) {
         if (args.length < 2) {
             System.out.println("Usage: java TCPClient <server_address> <port>");
@@ -79,20 +109,5 @@ public class TCPClient {
 
         TCPClient client = new TCPClient(serverAddress, port);
         client.start();
-    }
-
-    public String sendAndReceiveMessage(String message) {
-        try (Socket socket = new Socket(serverAddress, serverPort);
-             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
-             PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true)) {
-
-            out.println(message);
-            String response = in.readLine();
-            return response != null ? toHex(response) : null;
-
-        } catch (IOException e) {
-            System.err.println("Error in client communication: " + e.getMessage());
-            return null;
-        }
     }
 }
