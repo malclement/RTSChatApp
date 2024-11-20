@@ -1,4 +1,8 @@
 public class ThreadTest extends Thread {
+    public int getCounter() {
+        return counter;
+    }
+
     private int counter = 0;
 
     @Override
