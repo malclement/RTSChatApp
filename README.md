@@ -29,3 +29,41 @@ This project implements a simple Chat application using Java Sockets. The applic
 ├── README.md
 └── .gitignore
 ```
+
+## Usage
+
+1. **UDP Server**
+
+    To start the UDP Server, use the following command:
+    ```bash
+   java UDPServer <port> 
+   ```
+   
+2. **UDP Client**
+
+   To start the UDP Client, use the following command:
+    ```bash
+   java UDPClient <server_address> <port> 
+   ```
+
+3. **TCP Server**
+
+   To start the TCP Server, use the following command:
+    ```bash
+    java TCPServer <port> 
+    ```
+
+4. **TCP Client**
+
+    To start the UDP Client, use the following command:
+     ```bash
+    java TCPClient <server_address> <port> 
+    ```
+
+5. **TCP Multi Server**
+
+   To start the TCP Multi Server, use the following command:
+    ```bash
+    java TCPMultiServer <port> 
+    ```
+   
