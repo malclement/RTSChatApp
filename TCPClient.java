@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
+import java.util.UUID;
 
 /**
  * TCPClient is a class that implements a TCP client which can connect to a server,
@@ -60,16 +61,18 @@ public class TCPClient {
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
              PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true)) {
 
-            System.out.println("Connected to the server. Type your message and press Enter to send. Press CTRL+D to exit.");
+            System.out.println("Enter your nickname (leave blank for a random one): ");
+            String nickname = userInput.readLine();
+            if (nickname == null || nickname.trim().isEmpty()) {
+                nickname = "User-" + UUID.randomUUID().toString().substring(0, 8);
+            }
+            out.println(nickname);
+
+            System.out.println("Connected as " + nickname + ". Type your message and press Enter to send. Press CTRL+D to exit.");
 
             String inputLine;
             while ((inputLine = userInput.readLine()) != null) {
                 out.println(inputLine);
-                String response = in.readLine();
-
-                if (response != null) {
-                    System.out.println("Received from server (hex): " + toHex(response));
-                }
             }
 
         } catch (IOException e) {
