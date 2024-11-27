@@ -105,6 +105,16 @@ public class TCPMultiServer {
     }
 
     /**
+     * Checks if a given nickname is already taken by another client.
+     *
+     * @param nickname The nickname to check.
+     * @return {@code true} if the nickname is already taken, {@code false} otherwise.
+     */
+    public synchronized boolean isNicknameTaken(String nickname) {
+        return clients.containsKey(nickname);
+    }
+
+    /**
      * Shuts down the server, stopping it from accepting new connections and closing all active client connections.
      * This method is invoked during server shutdown to cleanly terminate all resources.
      */

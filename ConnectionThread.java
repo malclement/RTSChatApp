@@ -1,10 +1,11 @@
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 /**
  * The {@code ConnectionThread} class is responsible for managing the communication between the server and a client.
- * Each client connection is handled in a separate thread to allow multiple clients to interact simultaneously.
+ * Each client connection is handled by a separate thread to allow multiple clients to interact simultaneously.
  * This thread reads messages from the client, broadcasts them to other clients, and handles client disconnections.
  */
 public class ConnectionThread extends Thread {
@@ -39,15 +40,25 @@ public class ConnectionThread extends Thread {
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), StandardCharsets.UTF_8));
                 PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), StandardCharsets.UTF_8), true)
         ) {
-            out.println("Enter your nickname: ");
+            out.println("Enter your nickname (leave blank for a random one): ");
+            out.flush();
             nickname = in.readLine();
 
             if (nickname == null || nickname.trim().isEmpty()) {
                 nickname = "User-" + clientSocket.getInetAddress().getHostAddress();
             }
 
+            if (server.isNicknameTaken(nickname)) {
+                Random rand = new Random();
+                final int rndVal = rand.nextInt(100);
+                nickname = nickname + "-" + rndVal;
+            }
+
             server.addClient(nickname, clientSocket);
             server.broadcast(nickname + " joined the chat.", nickname);
+
+            out.println("Connected as " + nickname + ". Type your message and press Enter to send. Press CTRL+D to exit.");
+            out.flush();
 
             System.out.println(nickname + " has connected.");
 
@@ -71,6 +82,7 @@ public class ConnectionThread extends Thread {
             }
         }
     }
+
 
     /**
      * Returns the nickname of the client.
