@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="425436ac-6e32-45a9-b054-1efde8551a80" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2nqDTCCzWvXmGzIj7ljDIOEeURb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Client 8080.executor": "Run",
+    "Application.Client.executor": "Run",
+    "Application.Server.executor": "Run",
+    "Application.ServerLauncher.executor": "Run",
+    "Application.TCPClient.executor": "Run",
+    "Application.TCPMultiServer.executor": "Run",
+    "Application.TCPServer.executor": "Run",
+    "Application.TCPServerTest.executor": "Run",
+    "Application.ThreadTest.executor": "Run",
+    "Application.UDPClient.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in RTSChatApp.executor": "Coverage",
+    "JUnit.ServerLauncherTest.executor": "Run",
+    "JUnit.ServerLauncherTest.testServerModeSelection.executor": "Run",
+    "JUnit.ServerLauncherTest.testTCPModeDefaultPort.executor": "Run",
+    "JUnit.ServerLauncherTest.testTCPServerLaunch.executor": "Run",
+    "JUnit.TCPClientTest.executor": "Run",
+    "JUnit.TCPClientTest.testInvalidPort.executor": "Run",
+    "JUnit.TCPClientTest.testSendAndReceiveMessage.executor": "Run",
+    "JUnit.TCPMultiServerTest.executor": "Run",
+    "JUnit.TCPServerTest.executor": "Run",
+    "JUnit.TCPServerTest.launch.executor": "Run",
+    "JUnit.TCPServerTest.main.executor": "Run",
+    "JUnit.TCPServerTest.testDefaultConstructor.executor": "Run",
+    "JUnit.TCPServerTest.testInvalidPortConstructor.executor": "Run",
+    "JUnit.TCPServerTest.testLaunchServer.executor": "Run",
+    "JUnit.TCPServerTest.testParameterizedConstructor.executor": "Run",
+    "JUnit.TCPServerTest.testServerStop.executor": "Run",
+    "JUnit.TCPServerTest.testToString.executor": "Run",
+    "JUnit.TCPServerTest.testToString2.executor": "Run",
+    "JUnit.TCPServerTest.testToStringDefaultConstructor.executor": "Run",
+    "JUnit.ThreadTestTest.executor": "Run",
+    "JUnit.ThreadTestTest.testCounterIncrements.executor": "Run",
+    "JUnit.ThreadTestTest.testThreadInterruption.executor": "Run",
+    "JUnit.UDPClientTest.executor": "Run",
+    "JUnit.UDPClientTest.testValidConstructor.executor": "Run",
+    "JUnit.UDPServerTest.executor": "Coverage",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "<unknown>",
+    "go.import.settings.migrated": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/clement/Documents/ENSEA/java_networks/RTSChatApp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ServerLauncher">
+    <configuration name="Client 8080" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="UDPClient" />
+      <module name="RTSChatApp" />
+      <option name="PROGRAM_PARAMETERS" value="127.0.0.1 8080" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Client" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
+      <option name="MAIN_CLASS_NAME" value="UDPClient" />
+      <module name="RTSChatApp" />
+      <option name="PROGRAM_PARAMETERS" value="127.0.0.1 8000" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="UDPServer" />
+      <module name="RTSChatApp" />
+      <option name="PROGRAM_PARAMETERS" value="8000" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ServerLauncher" />
+      <module name="RTSChatApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TCPServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TCPServer" />
+      <module name="RTSChatApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerLauncherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RTSChatApp" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerLauncherTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerLauncherTest.testTCPModeDefaultPort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RTSChatApp" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerLauncherTest" />
+      <option name="METHOD_NAME" value="testTCPModeDefaultPort" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerLauncherTest.testTCPServerLaunch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RTSChatApp" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerLauncherTest" />
+      <option name="METHOD_NAME" value="testTCPServerLaunch" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Client 8080" />
+      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.ServerLauncher" />
+      <item itemvalue="Application.TCPServer" />
+      <item itemvalue="JUnit.ServerLauncherTest" />
+      <item itemvalue="JUnit.ServerLauncherTest.testTCPModeDefaultPort" />
+      <item itemvalue="JUnit.ServerLauncherTest.testTCPServerLaunch" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ServerLauncher" />
+        <item itemvalue="Application.TCPServer" />
+        <item itemvalue="JUnit.ServerLauncherTest" />
+        <item itemvalue="JUnit.ServerLauncherTest.testTCPModeDefaultPort" />
+        <item itemvalue="JUnit.ServerLauncherTest.testTCPServerLaunch" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="425436ac-6e32-45a9-b054-1efde8551a80" name="Changes" comment="" />
+      <created>1729691717743</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729691717743</updated>
+      <workItem from="1729691718799" duration="4322000" />
+      <workItem from="1731501117015" duration="9042000" />
+      <workItem from="1732105739259" duration="8994000" />
+      <workItem from="1732711149273" duration="8022000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/RTSChatApp$UDPServerTest.ic" NAME="UDPServerTest Coverage Results" MODIFIED="1729695893546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$All_in_RTSChatApp.ic" NAME="All in RTSChatApp Coverage Results" MODIFIED="1732109849965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$TCPServerTest.ic" NAME="TCPServerTest Coverage Results" MODIFIED="1731507289076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$Server.ic" NAME="Server Coverage Results" MODIFIED="1729695926125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>
