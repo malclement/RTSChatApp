@@ -1,12 +1,23 @@
 import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ServerLauncher {
 
     public static void main(String[] args) {
+        Set<String> validModes = new HashSet<>();
+        validModes.add("TCP");
+        validModes.add("UDP");
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Select Server Mode (TCP/UDP):");
         String mode = scanner.nextLine().trim().toUpperCase();
+
+        if (!validModes.contains(mode)) {
+            System.err.println("Invalid mode selected. Please choose either TCP or UDP.");
+            return;
+        }
 
         int port = 8080; // Default port
         System.out.println("Enter port number (default 8080):");
