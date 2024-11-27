@@ -86,7 +86,7 @@ public class TCPClient {
      * @param text The text string to be converted.
      * @return A string representing the hexadecimal form of the input text.
      */
-    private String toHex(String text) {
+    String toHex(String text) {
         StringBuilder hexString = new StringBuilder();
         for (char c : text.toCharArray()) {
             hexString.append(String.format("%02x", (int) c));

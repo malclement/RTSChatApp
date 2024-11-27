@@ -1,5 +1,10 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.io.*;
+import java.net.*;
+import java.util.UUID;
 
 class TCPClientTest {
 
@@ -51,5 +56,25 @@ class TCPClientTest {
 
         TCPClient clientMaxPort = new TCPClient("127.0.0.1", 65535);
         assertEquals(65535, clientMaxPort.getServerPort(), "Port should be 65535.");
+    }
+
+    @Test
+    void testConnectionFailure() {
+        String invalidServer = "invalid.server";
+        int port = 8080;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            new TCPClient(invalidServer, port);
+        }, "Expected IllegalArgumentException for invalid server address.");
+    }
+
+    @Test
+    void testToHexConversion() {
+        TCPClient client = new TCPClient("127.0.0.1", 8080);
+
+        assertEquals("68656c6c6f", client.toHex("hello"), "Hex representation of 'hello' should be '68656c6c6f'.");
+        assertEquals("776f726c64", client.toHex("world"), "Hex representation of 'world' should be '776f726c64'.");
+        assertEquals("", client.toHex(""), "Hex representation of empty string should be empty.");
+        assertEquals("7a", client.toHex("z"), "Hex representation of 'z' should be '7a'.");
     }
 }
