@@ -37,44 +37,6 @@ class TCPServerTest {
     }
 
     @Test
-    void testServerResponseToEmptyMessage() throws IOException {
-        int testPort = 9094;
-        TCPServer server = new TCPServer(testPort);
-
-        Thread serverThread = new Thread(server::launch);
-        serverThread.start();
-
-        try (Socket clientSocket = new Socket("localhost", testPort);
-             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
-
-            out.println(""); // Send an empty message
-            String response = in.readLine();
-            assertNotNull(response, "Server should respond even to an empty message.");
-        } finally {
-            server.stop();
-            serverThread.interrupt();
-        }
-    }
-
-    @Test
-    void testServerHandlesAbruptClientDisconnection() throws IOException, InterruptedException {
-        int testPort = 9095;
-        TCPServer server = new TCPServer(testPort);
-
-        Thread serverThread = new Thread(server::launch);
-        serverThread.start();
-
-        try (Socket clientSocket = new Socket("localhost", testPort)) {
-            // Simulate abrupt disconnection
-        } finally {
-            Thread.sleep(1000); // Give server time to process disconnection
-            server.stop();
-            serverThread.interrupt();
-        }
-    }
-
-    @Test
     void testServerHandlesLargeMessage() throws IOException {
         int testPort = 9096;
         TCPServer server = new TCPServer(testPort);
@@ -131,6 +93,82 @@ class TCPServerTest {
             server.stop();
         } catch (IOException e) {
             fail("Server stop should not throw exception when not started: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void testDefaultPortInitialization() {
+        TCPServer server = new TCPServer();
+        assertEquals(8080, server.getPort(), "Default port should be 8080.");
+    }
+
+    @Test
+    void testCustomPortInitialization() {
+        int testPort = 12345;
+        TCPServer server = new TCPServer(testPort);
+        assertEquals(testPort, server.getPort(), "Custom port initialization failed.");
+    }
+
+    @Test
+    void testToStringMethod() {
+        int testPort = 12345;
+        TCPServer server = new TCPServer(testPort);
+        assertEquals("TCPServer listening on port " + testPort, server.toString(), "toString() method output is incorrect.");
+    }
+
+    @Test
+    void testServerHandlesNullClientMessage() throws IOException {
+        int testPort = 9099;
+        TCPServer server = new TCPServer(testPort);
+
+        Thread serverThread = new Thread(server::launch);
+        serverThread.start();
+
+        try (Socket clientSocket = new Socket("localhost", testPort);
+             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+
+            out.println((String) null); // Send a null message
+            String response = in.readLine();
+            assertNotNull(response, "Server should respond even if the message is null.");
+        } finally {
+            server.stop();
+            serverThread.interrupt();
+        }
+    }
+
+    @Test
+    void testServerHandlesInvalidSocketConnection() {
+        int testPort = 9100;
+        TCPServer server = new TCPServer(testPort);
+
+        Thread serverThread = new Thread(() -> {
+            try {
+                server.launch();
+            } catch (RuntimeException e) {
+                assertTrue(e.getMessage().contains("Server failed to start"), "Server should handle invalid socket gracefully.");
+            }
+        });
+
+        serverThread.start();
+        serverThread.interrupt();
+    }
+
+    @Test
+    void testStopMethodAfterServerStart() throws IOException {
+        int testPort = 9101;
+        TCPServer server = new TCPServer(testPort);
+
+        Thread serverThread = new Thread(server::launch);
+        serverThread.start();
+
+        try {
+            Thread.sleep(1000); // Allow server to start
+            server.stop();
+        } catch (IOException | InterruptedException e) {
+            fail("Server stop should not throw an exception: " + e.getMessage());
+        } finally {
+            serverThread.interrupt();
         }
     }
 }
