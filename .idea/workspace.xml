@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="425436ac-6e32-45a9-b054-1efde8551a80" name="Changes" comment="fix tests">
+    <list default="true" id="425436ac-6e32-45a9-b054-1efde8551a80" name="Changes" comment="add server launcher test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ServerLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ServerLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TCPServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TCPServerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ServerLauncher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ServerLauncher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/TCPServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/TCPServerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UDPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UDPServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UDPServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UDPServerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/UDPServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UDPServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/UDPServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/UDPServerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.All in RTSChat.executor": "Coverage",
     "JUnit.All in RTSChatApp.executor": "Coverage",
-    "JUnit.ServerFactoryTest.executor": "Run",
+    "JUnit.ServerFactoryTest.executor": "Coverage",
     "JUnit.ServerLauncherTest.executor": "Coverage",
     "JUnit.ServerLauncherTest.testServerModeSelection.executor": "Run",
     "JUnit.ServerLauncherTest.testTCPModeDefaultPort.executor": "Run",
@@ -97,7 +97,7 @@
     "JUnit.ThreadTestTest.testThreadInterruption.executor": "Run",
     "JUnit.UDPClientTest.executor": "Run",
     "JUnit.UDPClientTest.testValidConstructor.executor": "Run",
-    "JUnit.UDPServerTest.executor": "Coverage",
+    "JUnit.UDPServerTest.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -118,7 +118,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -184,21 +184,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerLauncherTest.testTCPServerLaunchWithCustomPort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UDPServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ServerLauncherTest" />
-      <option name="METHOD_NAME" value="testTCPServerLaunchWithCustomPort" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="UDPServerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TCPServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UDPServerTest.testServerHandlesInvalidPort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TCPServerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="UDPServerTest" />
+      <option name="METHOD_NAME" value="testServerHandlesInvalidPort" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -210,16 +210,16 @@
       <item itemvalue="JUnit.All in RTSChat" />
       <item itemvalue="JUnit.ServerFactoryTest" />
       <item itemvalue="JUnit.ServerLauncherTest" />
-      <item itemvalue="JUnit.ServerLauncherTest.testTCPServerLaunchWithCustomPort" />
-      <item itemvalue="JUnit.TCPServerTest" />
+      <item itemvalue="JUnit.UDPServerTest" />
+      <item itemvalue="JUnit.UDPServerTest.testServerHandlesInvalidPort" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in RTSChat" />
+        <item itemvalue="JUnit.UDPServerTest.testServerHandlesInvalidPort" />
+        <item itemvalue="JUnit.UDPServerTest" />
         <item itemvalue="JUnit.ServerFactoryTest" />
         <item itemvalue="JUnit.ServerLauncherTest" />
-        <item itemvalue="JUnit.ServerLauncherTest.testTCPServerLaunchWithCustomPort" />
-        <item itemvalue="JUnit.TCPServerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -252,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733320494268</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add server launcher test">
+      <option name="closed" value="true" />
+      <created>1733326641214</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733326641214</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +279,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tests" />
+    <MESSAGE value="add server launcher test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add server launcher test" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -291,12 +300,13 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/RTSChatApp$All_in_RTSChat.ic" NAME="All in RTSChat Coverage Results" MODIFIED="1733325668829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$All_in_RTSChat.ic" NAME="All in RTSChat Coverage Results" MODIFIED="1733327261203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest_testStartWithCustomNickname.ic" NAME="TCPClientTest.testStartWithCustomNickname Coverage Results" MODIFIED="1733323486823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest_testStartWithRandomNickname.ic" NAME="TCPClientTest.testStartWithRandomNickname Coverage Results" MODIFIED="1733323639547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest_testToHexConversion.ic" NAME="TCPClientTest.testToHexConversion Coverage Results" MODIFIED="1733320398052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$ServerLauncherTest_testValidPortInput.ic" NAME="ServerLauncherTest.testValidPortInput Coverage Results" MODIFIED="1733320996816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$ServerLauncherTest_testValidUDPModeWithValidPort.ic" NAME="ServerLauncherTest.testValidUDPModeWithValidPort Coverage Results" MODIFIED="1733320837940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$ServerFactoryTest.ic" NAME="ServerFactoryTest Coverage Results" MODIFIED="1733326537673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$ServerLauncherTest.ic" NAME="ServerLauncherTest Coverage Results" MODIFIED="1733326399041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClient.ic" NAME="TCPClient Coverage Results" MODIFIED="1733320371146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$UDPServerTest.ic" NAME="UDPServerTest Coverage Results" MODIFIED="1729695893546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
