@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="425436ac-6e32-45a9-b054-1efde8551a80" name="Changes" comment="add server launcher test">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UDPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UDPServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UDPServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UDPServerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UDPServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UDPServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/UDPServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/UDPServerTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="425436ac-6e32-45a9-b054-1efde8551a80" name="Changes" comment="improve UDP server tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,6 +92,7 @@
     "JUnit.UDPClientTest.executor": "Run",
     "JUnit.UDPClientTest.testValidConstructor.executor": "Run",
     "JUnit.UDPServerTest.executor": "Run",
+    "JUnit.UDPServerTest.testServerHandlesInvalidPort.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -133,7 +128,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in RTSChat">
+  <component name="RunManager" selected="JUnit.UDPClientTest">
     <configuration name="Client 8080" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="UDPClient" />
       <module name="RTSChatApp" />
@@ -175,10 +170,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerLauncherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UDPClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ServerLauncherTest" />
+      <option name="MAIN_CLASS_NAME" value="UDPClientTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -209,17 +204,17 @@
       <item itemvalue="Application.Server" />
       <item itemvalue="JUnit.All in RTSChat" />
       <item itemvalue="JUnit.ServerFactoryTest" />
-      <item itemvalue="JUnit.ServerLauncherTest" />
+      <item itemvalue="JUnit.UDPClientTest" />
       <item itemvalue="JUnit.UDPServerTest" />
       <item itemvalue="JUnit.UDPServerTest.testServerHandlesInvalidPort" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UDPClientTest" />
         <item itemvalue="JUnit.All in RTSChat" />
         <item itemvalue="JUnit.UDPServerTest.testServerHandlesInvalidPort" />
         <item itemvalue="JUnit.UDPServerTest" />
         <item itemvalue="JUnit.ServerFactoryTest" />
-        <item itemvalue="JUnit.ServerLauncherTest" />
       </list>
     </recent_temporary>
   </component>
@@ -260,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733326641214</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="improve UDP server tests">
+      <option name="closed" value="true" />
+      <created>1733327658602</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733327658602</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +283,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix tests" />
     <MESSAGE value="add server launcher test" />
-    <option name="LAST_COMMIT_MESSAGE" value="add server launcher test" />
+    <MESSAGE value="improve UDP server tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve UDP server tests" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
@@ -300,7 +304,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/RTSChatApp$All_in_RTSChat.ic" NAME="All in RTSChat Coverage Results" MODIFIED="1733327261203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$All_in_RTSChat.ic" NAME="All in RTSChat Coverage Results" MODIFIED="1733327727069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest_testStartWithCustomNickname.ic" NAME="TCPClientTest.testStartWithCustomNickname Coverage Results" MODIFIED="1733323486823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest_testStartWithRandomNickname.ic" NAME="TCPClientTest.testStartWithRandomNickname Coverage Results" MODIFIED="1733323639547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest_testToHexConversion.ic" NAME="TCPClientTest.testToHexConversion Coverage Results" MODIFIED="1733320398052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
