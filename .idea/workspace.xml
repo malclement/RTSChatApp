@@ -135,7 +135,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in RTSChat">
+  <component name="RunManager" selected="JUnit.TCPClientTest.testToHexWithNullInput">
     <configuration name="Client 8080" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="UDPClient" />
       <module name="RTSChatApp" />
@@ -168,38 +168,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TCPServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TCPClientTest.testCreateSocketFailure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TCPServerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TCPClientTest" />
+      <option name="METHOD_NAME" value="testCreateSocketFailure" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UDPClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TCPClientTest.testCreateSocketSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UDPClientTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TCPClientTest" />
+      <option name="METHOD_NAME" value="testCreateSocketSuccess" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UDPServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TCPClientTest.testToHexWithNullInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UDPServerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TCPClientTest" />
+      <option name="METHOD_NAME" value="testToHexWithNullInput" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UDPServerTest.testServerHandlesInvalidPort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TCPClientTest.testToHexWithSpecialCharacters" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UDPServerTest" />
-      <option name="METHOD_NAME" value="testServerHandlesInvalidPort" />
+      <option name="MAIN_CLASS_NAME" value="TCPClientTest" />
+      <option name="METHOD_NAME" value="testToHexWithSpecialCharacters" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -210,18 +213,18 @@
       <item itemvalue="Application.Client 8080" />
       <item itemvalue="Application.Server" />
       <item itemvalue="JUnit.All in RTSChat" />
-      <item itemvalue="JUnit.TCPServerTest" />
-      <item itemvalue="JUnit.UDPClientTest" />
-      <item itemvalue="JUnit.UDPServerTest" />
-      <item itemvalue="JUnit.UDPServerTest.testServerHandlesInvalidPort" />
+      <item itemvalue="JUnit.TCPClientTest.testCreateSocketFailure" />
+      <item itemvalue="JUnit.TCPClientTest.testCreateSocketSuccess" />
+      <item itemvalue="JUnit.TCPClientTest.testToHexWithNullInput" />
+      <item itemvalue="JUnit.TCPClientTest.testToHexWithSpecialCharacters" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TCPClientTest.testToHexWithNullInput" />
+        <item itemvalue="JUnit.TCPClientTest.testToHexWithSpecialCharacters" />
+        <item itemvalue="JUnit.TCPClientTest.testCreateSocketFailure" />
+        <item itemvalue="JUnit.TCPClientTest.testCreateSocketSuccess" />
         <item itemvalue="JUnit.All in RTSChat" />
-        <item itemvalue="JUnit.TCPServerTest" />
-        <item itemvalue="JUnit.UDPClientTest" />
-        <item itemvalue="JUnit.UDPServerTest.testServerHandlesInvalidPort" />
-        <item itemvalue="JUnit.UDPServerTest" />
       </list>
     </recent_temporary>
   </component>

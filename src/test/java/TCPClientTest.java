@@ -102,4 +102,15 @@ class TCPClientTest {
             assertTrue(byteOutStream.toString().contains("CustomNick"), "Output stream should contain the nickname.");
         }
     }
+
+    @Test
+    void testToHexWithSpecialCharacters() {
+        assertEquals("2122232425", TCPClient.toHex("!\"#$%"), "Hex representation of '!\"#$%' should be '2122232425'.");
+        assertEquals("c3a9", TCPClient.toHex("é"), "Hex representation of 'é' should be 'c3a9' (UTF-8 encoding).");
+    }
+
+    @Test
+    void testToHexWithNullInput() {
+        assertThrows(IllegalArgumentException.class, () -> TCPClient.toHex(null), "Null input should throw IllegalArgumentException.");
+    }
 }

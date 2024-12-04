@@ -61,9 +61,13 @@ public class TCPClient {
      * @throws IllegalArgumentException If the input string is null.
      */
     public static String toHex(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Input string cannot be null.");
+        }
         StringBuilder hexString = new StringBuilder();
-        for (char c : input.toCharArray()) {
-            hexString.append(String.format("%02x", (int) c));
+        byte[] bytes = input.getBytes(StandardCharsets.UTF_8); // Convert to UTF-8 bytes
+        for (byte b : bytes) {
+            hexString.append(String.format("%02x", b));
         }
         return hexString.toString();
     }
