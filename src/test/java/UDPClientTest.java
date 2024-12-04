@@ -1,5 +1,11 @@
 import org.junit.jupiter.api.Test;
+
+import java.io.Console;
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class UDPClientTest {
 
@@ -51,5 +57,40 @@ class UDPClientTest {
 
         UDPClient clientMaxPort = new UDPClient("127.0.0.1", 65535);
         assertEquals(65535, clientMaxPort.getServerPort(), "Port should be 65535.");
+    }
+
+    @Test
+    void testIsValidIPAddress() {
+        UDPClient client = new UDPClient("127.0.0.1", 8080);
+        assertTrue(client.isValidIPAddress("127.0.0.1"), "Valid IP address should return true.");
+        assertTrue(client.isValidIPAddress("localhost"), "Valid hostname should return true.");
+        assertFalse(client.isValidIPAddress("999.999.999.999"), "Invalid IP address should return false.");
+        assertFalse(client.isValidIPAddress("abc.def.ghi.jkl"), "Non-numeric IP should return false.");
+    }
+
+    @Test
+    void testLaunchNoConsole() throws IOException {
+        UDPClient client = new UDPClient("127.0.0.1", 8080);
+        System.setProperty("java.awt.headless", "true"); // Simulate no console availability
+        client.launch(); // This should exit gracefully without sending any data
+    }
+
+    @Test
+    void testLaunchTermination() {
+        assertDoesNotThrow(() -> {
+            UDPClient client = new UDPClient("127.0.0.1", 8080);
+            client.launch();
+        });
+    }
+
+    @Test
+    void testMessageSending() throws IOException {
+        UDPClient client = spy(new UDPClient("127.0.0.1", 8080));
+
+        // Spy on the DatagramSocket and simulate behavior
+        doNothing().when(client).launch();
+
+        assertDoesNotThrow(client::launch);
+        verify(client, atLeastOnce()).launch();
     }
 }

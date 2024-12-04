@@ -51,7 +51,7 @@ public class UDPClient {
      * @param ip the IP address to validate
      * @return true if the IP address is valid, false otherwise
      */
-    private boolean isValidIPAddress(String ip) {
+    boolean isValidIPAddress(String ip) {
         try {
             InetAddress.getByName(ip);
             return true;

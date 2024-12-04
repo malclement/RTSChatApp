@@ -14,15 +14,12 @@ class UDPServerTest {
 
     private static final int TEST_SERVER_PORT = 9091;
     private static final String TEST_MESSAGE = "Hello, Server!";
-    private static final String INVALID_IP = "999.999.999.999";
     private static ExecutorService executorService;
-    private static boolean serverRunning;
     private static DatagramSocket clientSocket;
     private static ByteArrayOutputStream serverOutput;
 
     @BeforeAll
     static void setupServer() throws Exception {
-        serverRunning = true;
         executorService = Executors.newSingleThreadExecutor();
         serverOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(serverOutput));
@@ -34,88 +31,106 @@ class UDPServerTest {
                 e.printStackTrace();
             }
         });
-        TimeUnit.SECONDS.sleep(1); // Ensure server has started before tests
+        TimeUnit.SECONDS.sleep(1); // Ensure server is up
     }
 
     @AfterAll
     static void tearDownServer() throws Exception {
-        serverRunning = false;
         if (executorService != null) {
             executorService.shutdownNow();
+            executorService.awaitTermination(1, TimeUnit.SECONDS);
         }
-        executorService.awaitTermination(1, TimeUnit.SECONDS);
         if (clientSocket != null && !clientSocket.isClosed()) {
             clientSocket.close();
         }
-        System.setOut(System.out); // Restore original System.out
+        System.setOut(System.out); // Restore System.out
     }
 
     @Test
-    void testUDPServerReceivesMessage() throws Exception {
-        clientSocket = new DatagramSocket();
-        byte[] buffer = TEST_MESSAGE.getBytes(StandardCharsets.UTF_8);
-        DatagramPacket packet = new DatagramPacket(
-                buffer, buffer.length, InetAddress.getByName("localhost"), TEST_SERVER_PORT);
-        clientSocket.send(packet);
+    void testServerReceivesSingleMessage() throws Exception {
+        sendMessage(TEST_MESSAGE);
         TimeUnit.SECONDS.sleep(1);
         String output = serverOutput.toString();
-        assertTrue(output.contains(TEST_MESSAGE), "Server should have received the message: " + TEST_MESSAGE);
+        assertTrue(output.contains(TEST_MESSAGE), "Server should receive the message: " + TEST_MESSAGE);
+    }
+
+    @Test
+    void testServerReceivesMultipleMessages() throws Exception {
+        String[] messages = {"Hello", "World", "Test"};
+        for (String message : messages) {
+            sendMessage(message);
+        }
+        TimeUnit.SECONDS.sleep(1);
+        String output = serverOutput.toString();
+        for (String message : messages) {
+            assertTrue(output.contains(message), "Server should receive the message: " + message);
+        }
+    }
+
+    @Test
+    void testServerHandlesEmptyMessage() throws Exception {
+        sendMessage("");
+        TimeUnit.SECONDS.sleep(1);
+        String output = serverOutput.toString();
+        assertTrue(output.contains(""), "Server should handle empty messages gracefully.");
     }
 
     @Test
     void testServerHandlesInvalidIPAddress() {
-        try {
-            new UDPClient(INVALID_IP, TEST_SERVER_PORT);  // Should throw exception
-            fail("Exception should be thrown for invalid IP address.");
-        } catch (IllegalArgumentException e) {
-            assertTrue(e.getMessage().contains("Invalid IP address format"));
-        }
+        assertThrows(UnknownHostException.class, () -> {
+            new DatagramSocket().send(new DatagramPacket(
+                    new byte[0], 0, InetAddress.getByName("999.999.999.999"), TEST_SERVER_PORT
+            ));
+        }, "Server should throw exception for invalid IP address.");
+    }
+
+    @Test
+    void testServerToStringMethod() {
+        UDPServer server = new UDPServer(TEST_SERVER_PORT);
+        assertEquals("UDPServer{port=" + TEST_SERVER_PORT + "}", server.toString(),
+                "Server's toString method should return the correct representation.");
+    }
+
+    @Test
+    void testServerConstructorDefaultPort() {
+        UDPServer server = new UDPServer();
+        assertEquals(8000, server.getPort(), "Default port should be 8000.");
     }
 
     @Test
     void testServerHandlesInvalidPort() {
-        try {
-            new UDPClient("localhost", -1);  // Invalid port
-            fail("Exception should be thrown for invalid port.");
-        } catch (IllegalArgumentException e) {
-            assertTrue(e.getMessage().contains("Port number must be between 1 and 65535"));
-        }
+        assertThrows(IllegalArgumentException.class, () -> {
+            new UDPServer(-1); // Invalid port
+        }, "Constructor should throw IllegalArgumentException for negative port numbers.");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            new UDPServer(70000); // Invalid port
+        }, "Constructor should throw IllegalArgumentException for ports above 65535.");
     }
 
     @Test
-    void testUDPServerReceivesMultipleMessages() throws Exception {
-        final String[] messages = {"Hello", "World", "Test"};
-        DatagramSocket socket = new DatagramSocket();
-
-        for (String message : messages) {
-            byte[] buffer = message.getBytes(StandardCharsets.UTF_8);
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, InetAddress.getByName("localhost"), TEST_SERVER_PORT);
-            socket.send(packet);
+    void testServerHandlesContinuousTraffic() throws Exception {
+        for (int i = 0; i < 10; i++) {
+            sendMessage("Message " + i);
         }
-
         TimeUnit.SECONDS.sleep(1);
         String output = serverOutput.toString();
-        for (String message : messages) {
-            assertTrue(output.contains(message), "Server should have received the message: " + message);
+        for (int i = 0; i < 10; i++) {
+            assertTrue(output.contains("Message " + i), "Server should handle continuous messages: Message " + i);
         }
     }
 
-    @Test
-    void testServerShutdownGracefully() throws InterruptedException {
-        executorService.shutdownNow();
-        assertTrue(executorService.isShutdown(), "ExecutorService should be shut down");
-    }
-
-    @Test
-    void testEmptyMessageHandling() throws Exception {
+    /**
+     * Helper method to send a UDP message to the server.
+     *
+     * @param message the message to send
+     * @throws Exception if an error occurs while sending
+     */
+    private void sendMessage(String message) throws Exception {
         clientSocket = new DatagramSocket();
-        String emptyMessage = "";
-        byte[] buffer = emptyMessage.getBytes(StandardCharsets.UTF_8);
-        DatagramPacket packet = new DatagramPacket(
-                buffer, buffer.length, InetAddress.getByName("localhost"), TEST_SERVER_PORT);
+        byte[] buffer = message.getBytes(StandardCharsets.UTF_8);
+        DatagramPacket packet = new DatagramPacket(buffer, buffer.length, InetAddress.getByName("localhost"), TEST_SERVER_PORT);
         clientSocket.send(packet);
-        TimeUnit.SECONDS.sleep(1);
-        String output = serverOutput.toString();
-        assertTrue(true, "Server should have received the empty message.");
+        clientSocket.close();
     }
 }

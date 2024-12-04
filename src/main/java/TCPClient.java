@@ -61,11 +61,23 @@ public class TCPClient {
      * @throws IllegalArgumentException If the input string is null.
      */
     public static String toHex(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Input string cannot be null.");
+        }
         StringBuilder hexString = new StringBuilder();
-        for (char c : input.toCharArray()) {
-            hexString.append(String.format("%02x", (int) c));
+        byte[] bytes = input.getBytes(StandardCharsets.UTF_8); // Convert to UTF-8 bytes
+        for (byte b : bytes) {
+            hexString.append(String.format("%02x", b));
         }
         return hexString.toString();
+    }
+
+    protected BufferedReader createUserInputReader() throws IOException {
+        return new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    protected Socket createSocket(String serverAddress, int serverPort) throws IOException {
+        return new Socket(serverAddress, serverPort);
     }
 
     /**
@@ -73,8 +85,8 @@ public class TCPClient {
      * The user can input messages via the console.
      */
     public void start() {
-        try (Socket socket = new Socket(serverAddress, serverPort);
-             BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        try (Socket socket = createSocket(serverAddress, serverPort);
+             BufferedReader userInput = createUserInputReader();
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
              PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true)) {
 

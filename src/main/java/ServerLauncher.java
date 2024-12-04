@@ -8,15 +8,13 @@ import java.util.Set;
  * and a port number, validates the input, and then starts the appropriate server.
  */
 public class ServerLauncher {
+    private final ServerFactory serverFactory;
 
-    /**
-     * Main method to launch the server based on user input.
-     * Users can select between TCP and UDP modes and provide a custom port number.
-     * The default port is 8080 if no valid port is provided.
-     *
-     * @param args command-line arguments (not used)
-     */
-    public static void main(String[] args) {
+    public ServerLauncher(ServerFactory serverFactory) {
+        this.serverFactory = serverFactory;
+    }
+
+    public void run() {
         Set<String> validModes = new HashSet<>();
         validModes.add("TCP");
         validModes.add("UDP");
@@ -38,36 +36,32 @@ public class ServerLauncher {
             try {
                 port = Integer.parseInt(portInput);
                 if (port <= 0 || port > 65535) {
-                    throw new IllegalArgumentException("Port must be between 1 and 65535.");
+                    System.err.println("Port must be between 1 and 65535. Using default port 8080.");
+                    port = 8080;
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Invalid port number. Using default port 8080.");
+                System.err.println("Invalid port number format. Using default port 8080.");
                 port = 8080;
             }
         }
 
         try {
-            switch (mode) {
-                case "TCP":
-                    System.out.println("Launching TCP Multi-Server on port " + port + "...");
-                    TCPMultiServer tcpServer = new TCPMultiServer(port);
-                    tcpServer.launch();
-                    break;
-
-                case "UDP":
-                    System.out.println("Launching UDP Server on port " + port + "...");
-                    UDPServer udpServer = new UDPServer(port);
-                    udpServer.launch();
-                    break;
-
-                default:
-                    System.err.println("Unexpected error: Invalid mode detected.");
+            if ("TCP".equals(mode)) {
+                System.out.println("Launching TCP Multi-Server on port " + port + "...");
+                serverFactory.createTCPServer(port).launch();
+            } else if ("UDP".equals(mode)) {
+                System.out.println("Launching UDP Server on port " + port + "...");
+                serverFactory.createUDPServer(port).launch();
             }
         } catch (Exception e) {
             System.err.println("Critical error: " + e.getMessage());
-            e.printStackTrace();
         } finally {
             System.out.println("ServerLauncher has stopped.");
         }
+    }
+
+    public static void main(String[] args) {
+        ServerLauncher launcher = new ServerLauncher(new ServerFactory());
+        launcher.run();
     }
 }

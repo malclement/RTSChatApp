@@ -16,11 +16,23 @@ public class UDPServer {
     private static final int DEFAULT_PORT = 8000;
 
     /**
+     * Getter for the port field.
+     *
+     * @return the port number the server is bound to
+     */
+    public int getPort() {
+        return port;
+    }
+
+    /**
      * Constructor to initialize the UDP server with a custom port.
      *
      * @param port the port to bind the server to
      */
     public UDPServer(int port) {
+        if (port < 1 || port > 65535) {
+            throw new IllegalArgumentException("Port number must be between 1 and 65535");
+        }
         this.port = port;
     }
 
