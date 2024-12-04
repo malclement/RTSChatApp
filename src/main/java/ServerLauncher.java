@@ -17,28 +17,23 @@ public class ServerLauncher {
      * @param args command-line arguments (not used)
      */
     public static void main(String[] args) {
-        // Define valid server modes
         Set<String> validModes = new HashSet<>();
         validModes.add("TCP");
         validModes.add("UDP");
 
-        // Prompt the user to select a mode
         Scanner scanner = new Scanner(System.in);
         System.out.println("Select Server Mode (TCP/UDP):");
         String mode = scanner.nextLine().trim().toUpperCase();
 
-        // Validate the selected mode
         if (!validModes.contains(mode)) {
             System.err.println("Invalid mode selected. Please choose either TCP or UDP.");
-            return; // Exit early for invalid input
+            return;
         }
 
-        // Default port configuration
         int port = 8080;
         System.out.println("Enter port number (default 8080):");
         String portInput = scanner.nextLine().trim();
 
-        // Validate and parse the port number
         if (!portInput.isEmpty()) {
             try {
                 port = Integer.parseInt(portInput);
@@ -51,7 +46,6 @@ public class ServerLauncher {
             }
         }
 
-        // Launch the appropriate server
         try {
             switch (mode) {
                 case "TCP":
@@ -67,7 +61,6 @@ public class ServerLauncher {
                     break;
 
                 default:
-                    // This case should never occur due to earlier validation
                     System.err.println("Unexpected error: Invalid mode detected.");
             }
         } catch (Exception e) {
