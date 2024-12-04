@@ -1,9 +1,12 @@
 import org.junit.jupiter.api.*;
+import org.mockito.MockedStatic;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.io.*;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 class TCPClientTest {
@@ -63,18 +66,40 @@ class TCPClientTest {
         String invalidServer = "invalid.server";
         int port = 8080;
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            new TCPClient(invalidServer, port);
-        }, "Expected IllegalArgumentException for invalid server address.");
+        assertThrows(IllegalArgumentException.class, () -> new TCPClient(invalidServer, port), "Expected IllegalArgumentException for invalid server address.");
     }
 
     @Test
     void testToHexConversion() {
-        TCPClient client = new TCPClient("127.0.0.1", 8080);
-
         assertEquals("68656c6c6f", TCPClient.toHex("hello"), "Hex representation of 'hello' should be '68656c6c6f'.");
         assertEquals("776f726c64", TCPClient.toHex("world"), "Hex representation of 'world' should be '776f726c64'.");
         assertEquals("", TCPClient.toHex(""), "Hex representation of empty string should be empty.");
         assertEquals("7a", TCPClient.toHex("z"), "Hex representation of 'z' should be '7a'.");
+    }
+
+    @Test
+    void testStartWithCustomNickname() throws IOException {
+        Socket socketMock = mock(Socket.class);
+        ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
+        PrintWriter outMock = new PrintWriter(byteOutStream, true);
+        BufferedReader inMock = mock(BufferedReader.class);
+        BufferedReader userInputMock = mock(BufferedReader.class);
+
+        try (MockedStatic<UUID> mockedUUID = mockStatic(UUID.class)) {
+            UUID mockUUID = UUID.fromString("123e4567-e89b-12d3-a456-426614174000");
+            mockedUUID.when(UUID::randomUUID).thenReturn(mockUUID);
+
+            when(userInputMock.readLine()).thenReturn("CustomNick", null); // First nickname, then exit
+            when(socketMock.getOutputStream()).thenReturn(byteOutStream);
+            when(socketMock.getInputStream()).thenReturn(mock(InputStream.class));
+
+            TCPClient client = spy(new TCPClient("localhost", 8000));
+            doReturn(userInputMock).when(client).createUserInputReader();
+            doReturn(socketMock).when(client).createSocket("localhost", 8000);
+
+            client.start();
+
+            assertTrue(byteOutStream.toString().contains("CustomNick"), "Output stream should contain the nickname.");
+        }
     }
 }

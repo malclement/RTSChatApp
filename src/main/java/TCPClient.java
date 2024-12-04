@@ -68,13 +68,21 @@ public class TCPClient {
         return hexString.toString();
     }
 
+    protected BufferedReader createUserInputReader() throws IOException {
+        return new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    protected Socket createSocket(String serverAddress, int serverPort) throws IOException {
+        return new Socket(serverAddress, serverPort);
+    }
+
     /**
      * Starts the TCP client, allowing it to connect to the server, send messages, and receive responses.
      * The user can input messages via the console.
      */
     public void start() {
-        try (Socket socket = new Socket(serverAddress, serverPort);
-             BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        try (Socket socket = createSocket(serverAddress, serverPort);
+             BufferedReader userInput = createUserInputReader();
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
              PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true)) {
 
