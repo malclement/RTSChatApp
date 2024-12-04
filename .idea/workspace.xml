@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="425436ac-6e32-45a9-b054-1efde8551a80" name="Changes" comment="fix tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TCPClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TCPClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TCPClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TCPClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/TCPClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TCPClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/TCPClientTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ServerLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ServerLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TCPServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TCPServerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ServerLauncher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ServerLauncher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/TCPServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/TCPServerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,10 +65,12 @@
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.All in RTSChat.executor": "Coverage",
     "JUnit.All in RTSChatApp.executor": "Coverage",
+    "JUnit.ServerFactoryTest.executor": "Run",
     "JUnit.ServerLauncherTest.executor": "Coverage",
     "JUnit.ServerLauncherTest.testServerModeSelection.executor": "Run",
     "JUnit.ServerLauncherTest.testTCPModeDefaultPort.executor": "Run",
     "JUnit.ServerLauncherTest.testTCPServerLaunch.executor": "Run",
+    "JUnit.ServerLauncherTest.testTCPServerLaunchWithCustomPort.executor": "Run",
     "JUnit.ServerLauncherTest.testValidPortInput.executor": "Coverage",
     "JUnit.ServerLauncherTest.testValidUDPModeWithValidPort.executor": "Coverage",
     "JUnit.TCPClientTest.executor": "Coverage",
@@ -80,7 +81,7 @@
     "JUnit.TCPClientTest.testStartWithRandomNickname.executor": "Run",
     "JUnit.TCPClientTest.testToHexConversion.executor": "Coverage",
     "JUnit.TCPMultiServerTest.executor": "Run",
-    "JUnit.TCPServerTest.executor": "Run",
+    "JUnit.TCPServerTest.executor": "Coverage",
     "JUnit.TCPServerTest.launch.executor": "Run",
     "JUnit.TCPServerTest.main.executor": "Run",
     "JUnit.TCPServerTest.testDefaultConstructor.executor": "Run",
@@ -132,7 +133,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TCPClientTest">
+  <component name="RunManager" selected="JUnit.All in RTSChat">
     <configuration name="Client 8080" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="UDPClient" />
       <module name="RTSChatApp" />
@@ -157,48 +158,47 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ServerLauncher" />
+    <configuration name="All in RTSChat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TCPClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerFactoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TCPClientTest" />
+      <option name="MAIN_CLASS_NAME" value="ServerFactoryTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TCPClientTest.testStartWithCustomNickname" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerLauncherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TCPClientTest" />
-      <option name="METHOD_NAME" value="testStartWithCustomNickname" />
+      <option name="MAIN_CLASS_NAME" value="ServerLauncherTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerLauncherTest.testTCPServerLaunchWithCustomPort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RTSChat" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerLauncherTest" />
+      <option name="METHOD_NAME" value="testTCPServerLaunchWithCustomPort" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TCPClientTest.testStartWithEmptyNickname" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TCPServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RTSChat" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TCPClientTest" />
-      <option name="METHOD_NAME" value="testStartWithEmptyNickname" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TCPClientTest.testStartWithRandomNickname" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RTSChat" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TCPClientTest" />
-      <option name="METHOD_NAME" value="testStartWithRandomNickname" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="TCPServerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -207,19 +207,19 @@
       <item itemvalue="Application.Client" />
       <item itemvalue="Application.Client 8080" />
       <item itemvalue="Application.Server" />
-      <item itemvalue="Application.ServerLauncher" />
-      <item itemvalue="JUnit.TCPClientTest" />
-      <item itemvalue="JUnit.TCPClientTest.testStartWithCustomNickname" />
-      <item itemvalue="JUnit.TCPClientTest.testStartWithEmptyNickname" />
-      <item itemvalue="JUnit.TCPClientTest.testStartWithRandomNickname" />
+      <item itemvalue="JUnit.All in RTSChat" />
+      <item itemvalue="JUnit.ServerFactoryTest" />
+      <item itemvalue="JUnit.ServerLauncherTest" />
+      <item itemvalue="JUnit.ServerLauncherTest.testTCPServerLaunchWithCustomPort" />
+      <item itemvalue="JUnit.TCPServerTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TCPClientTest" />
-        <item itemvalue="JUnit.TCPClientTest.testStartWithEmptyNickname" />
-        <item itemvalue="JUnit.TCPClientTest.testStartWithCustomNickname" />
-        <item itemvalue="Application.ServerLauncher" />
-        <item itemvalue="JUnit.TCPClientTest.testStartWithRandomNickname" />
+        <item itemvalue="JUnit.All in RTSChat" />
+        <item itemvalue="JUnit.ServerFactoryTest" />
+        <item itemvalue="JUnit.ServerLauncherTest" />
+        <item itemvalue="JUnit.ServerLauncherTest.testTCPServerLaunchWithCustomPort" />
+        <item itemvalue="JUnit.TCPServerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -291,18 +291,19 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/RTSChatApp$All_in_RTSChat.ic" NAME="All in RTSChat Coverage Results" MODIFIED="1733320270117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$All_in_RTSChat.ic" NAME="All in RTSChat Coverage Results" MODIFIED="1733325668829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest_testStartWithCustomNickname.ic" NAME="TCPClientTest.testStartWithCustomNickname Coverage Results" MODIFIED="1733323486823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest_testStartWithRandomNickname.ic" NAME="TCPClientTest.testStartWithRandomNickname Coverage Results" MODIFIED="1733323639547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest_testToHexConversion.ic" NAME="TCPClientTest.testToHexConversion Coverage Results" MODIFIED="1733320398052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$ServerLauncherTest_testValidPortInput.ic" NAME="ServerLauncherTest.testValidPortInput Coverage Results" MODIFIED="1733320996816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$ServerLauncherTest_testValidUDPModeWithValidPort.ic" NAME="ServerLauncherTest.testValidUDPModeWithValidPort Coverage Results" MODIFIED="1733320837940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/RTSChatApp$ServerLauncherTest.ic" NAME="ServerLauncherTest Coverage Results" MODIFIED="1733320970793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$ServerLauncherTest.ic" NAME="ServerLauncherTest Coverage Results" MODIFIED="1733326399041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$TCPClient.ic" NAME="TCPClient Coverage Results" MODIFIED="1733320371146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$UDPServerTest.ic" NAME="UDPServerTest Coverage Results" MODIFIED="1729695893546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest.ic" NAME="TCPClientTest Coverage Results" MODIFIED="1733321722691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$TCPClientTest.ic" NAME="TCPClientTest Coverage Results" MODIFIED="1733324532336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$All_in_RTSChatApp.ic" NAME="All in RTSChatApp Coverage Results" MODIFIED="1732109849965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/RTSChatApp$TCPServerTest.ic" NAME="TCPServerTest Coverage Results" MODIFIED="1731507289076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$TCPMultiServerTest.ic" NAME="TCPMultiServerTest Coverage Results" MODIFIED="1733324812860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/RTSChatApp$TCPServerTest.ic" NAME="TCPServerTest Coverage Results" MODIFIED="1733325560499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/RTSChatApp$Server.ic" NAME="Server Coverage Results" MODIFIED="1729695926125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
