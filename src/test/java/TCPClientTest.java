@@ -72,9 +72,9 @@ class TCPClientTest {
     void testToHexConversion() {
         TCPClient client = new TCPClient("127.0.0.1", 8080);
 
-        assertEquals("68656c6c6f", client.toHex("hello"), "Hex representation of 'hello' should be '68656c6c6f'.");
-        assertEquals("776f726c64", client.toHex("world"), "Hex representation of 'world' should be '776f726c64'.");
-        assertEquals("", client.toHex(""), "Hex representation of empty string should be empty.");
-        assertEquals("7a", client.toHex("z"), "Hex representation of 'z' should be '7a'.");
+        assertEquals("68656c6c6f", TCPClient.toHex("hello"), "Hex representation of 'hello' should be '68656c6c6f'.");
+        assertEquals("776f726c64", TCPClient.toHex("world"), "Hex representation of 'world' should be '776f726c64'.");
+        assertEquals("", TCPClient.toHex(""), "Hex representation of empty string should be empty.");
+        assertEquals("7a", TCPClient.toHex("z"), "Hex representation of 'z' should be '7a'.");
     }
 }

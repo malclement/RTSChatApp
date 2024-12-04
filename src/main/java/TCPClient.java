@@ -18,6 +18,14 @@ import java.util.UUID;
  */
 public class TCPClient {
 
+    public int getServerPort() {
+        return serverPort;
+    }
+
+    public String getServerAddress() {
+        return serverAddress;
+    }
+
     private final String serverAddress;
     private final int serverPort;
 
@@ -46,6 +54,21 @@ public class TCPClient {
     }
 
     /**
+     * Converts a string to its hexadecimal representation.
+     *
+     * @param input The string to convert.
+     * @return The hexadecimal representation of the input string.
+     * @throws IllegalArgumentException If the input string is null.
+     */
+    public static String toHex(String input) {
+        StringBuilder hexString = new StringBuilder();
+        for (char c : input.toCharArray()) {
+            hexString.append(String.format("%02x", (int) c));
+        }
+        return hexString.toString();
+    }
+
+    /**
      * Starts the TCP client, allowing it to connect to the server, send messages, and receive responses.
      * The user can input messages via the console.
      */
@@ -66,6 +89,7 @@ public class TCPClient {
 
             String inputLine;
             while ((inputLine = userInput.readLine()) != null) {
+                System.out.println("Hexadecimal representation: " + toHex(inputLine));
                 out.println(inputLine);
             }
 
