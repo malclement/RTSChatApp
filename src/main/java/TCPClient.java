@@ -1,3 +1,6 @@
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,28 +13,20 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 /**
- * TCPClient is a class that implements a TCP client which can connect to a server,
- * send messages, and receive responses. The messages are encoded in UTF-8, and
- * the response from the server is displayed in hexadecimal format.
+ * TCPClient is a command-line application that implements a TCP client capable of connecting to a server,
+ * sending messages, and receiving responses. It uses the JCommander library for parsing command-line arguments.
  */
 public class TCPClient {
-    public String getServerAddress() {
-        return serverAddress;
-    }
-
-    public int getServerPort() {
-        return serverPort;
-    }
 
     private final String serverAddress;
     private final int serverPort;
 
     /**
-     * Constructor to initialize the TCPClient with the server address and port.
+     * Constructs a TCPClient instance with the specified server address and port.
      *
-     * @param serverAddress The address of the server.
-     * @param serverPort The port number to connect to.
-     * @throws IllegalArgumentException if the server address is invalid or the port is out of range.
+     * @param serverAddress The address of the server to connect to.
+     * @param serverPort    The port of the server to connect to.
+     * @throws IllegalArgumentException If the server address is invalid or the port is out of range.
      */
     public TCPClient(String serverAddress, int serverPort) {
         if (serverAddress == null || serverAddress.trim().isEmpty()) {
@@ -51,9 +46,8 @@ public class TCPClient {
     }
 
     /**
-     * Starts the client, establishes a connection to the server, and allows the user
-     * to send messages to the server and receive a response. The response is printed
-     * in hexadecimal format.
+     * Starts the TCP client, allowing it to connect to the server, send messages, and receive responses.
+     * The user can input messages via the console.
      */
     public void start() {
         try (Socket socket = new Socket(serverAddress, serverPort);
@@ -81,36 +75,47 @@ public class TCPClient {
     }
 
     /**
-     * Converts a given string into its hexadecimal representation.
-     *
-     * @param text The text string to be converted.
-     * @return A string representing the hexadecimal form of the input text.
+     * Represents the command-line arguments for the TCP client.
+     * It uses JCommander annotations to define options.
      */
-    String toHex(String text) {
-        StringBuilder hexString = new StringBuilder();
-        for (char c : text.toCharArray()) {
-            hexString.append(String.format("%02x", (int) c));
-        }
-        return hexString.toString();
+    public static class Args {
+        @Parameter(names = {"-a", "--address"}, description = "Server address (e.g., localhost)", required = true)
+        private String serverAddress;
+
+        @Parameter(names = {"-p", "--port"}, description = "Server port (e.g., 8000)", required = true)
+        private int serverPort;
+
+        @Parameter(names = {"-h", "--help"}, help = true, description = "Display help message")
+        private boolean help = false;
     }
 
     /**
-     * Main method to launch the TCPClient application. It expects the server address
-     * and port number as command line arguments.
+     * The main entry point of the TCP client application. It parses command-line arguments
+     * using JCommander and starts the client.
      *
-     * @param args The command line arguments. The first argument is the server address,
-     *             and the second is the port number.
+     * @param args The command-line arguments passed to the application.
      */
     public static void main(String[] args) {
-        if (args.length < 2) {
-            System.out.println("Usage: java TCPClient <server_address> <port>");
-            return;
+        Args jArgs = new Args();
+        JCommander commander = JCommander.newBuilder()
+                .addObject(jArgs)
+                .programName("TCPClient")
+                .build();
+
+        try {
+            commander.parse(args);
+
+            if (jArgs.help) {
+                commander.usage();
+                return;
+            }
+
+            TCPClient client = new TCPClient(jArgs.serverAddress, jArgs.serverPort);
+            client.start();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            commander.usage();
         }
-
-        String serverAddress = args[0];
-        int port = Integer.parseInt(args[1]);
-
-        TCPClient client = new TCPClient(serverAddress, port);
-        client.start();
     }
 }
